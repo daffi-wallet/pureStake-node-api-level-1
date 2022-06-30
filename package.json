@@ -1,0 +1,21 @@
+{
+	"name": "pure-stack-node-api-level-1",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon index.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"algosdk": "^1.18.0",
+		"cors": "^2.8.5",
+		"dotenv": "^16.0.1",
+		"express": "^4.18.1",
+		"lodash": "^4.17.21",
+		"nodemon": "^2.0.18",
+		"uuid": "^8.3.2"
+	}
+}
