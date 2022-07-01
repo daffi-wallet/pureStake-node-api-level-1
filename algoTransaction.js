@@ -7,12 +7,12 @@ const algosdk = require("algosdk");
 const baseServer = "https://testnet-algorand.api.purestake.io/ps2";
 const port = "";
 
-const ApiKey = process.env.PURESTAKE_API_KEY;
-const senderMnemonic = process.env.SENDER_MNEMONIC;
+const apiKey = process.env.PURESTAKE_API_KEY;
+const senderMnemonic = process.env.BASE_ACC_MNEMONIC;
 const receiverAccount = process.env.RECEIVER_ACCOUNT;
 
 const token = {
-	"X-API-key": ApiKey,
+	"X-API-key": apiKey,
 };
 
 let algodClient = new algosdk.Algodv2(token, baseServer, port);
