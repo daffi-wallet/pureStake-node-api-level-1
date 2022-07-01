@@ -1,40 +1,64 @@
 require("dotenv").config();
+// const algosdk = require("algosdk");
+const fetch = require("node-fetch");
+
 const apiKey = process.env.PURESTAKE_API_KEY;
 const baseAccKey = process.env.BASE_ACC_KEY;
 
-// const algosdk = require("algosdk");
-// const baseServer =
-// 	"https://testnet-algorand.api.purestake.io/ps2/v2/accounts/K25SKSRLVH4MFN2YQ6E5IAEIFRMT6Q56IXKSLLL6FJNFU7XNH5PNZ4CGAQ";
-// const port = "";
+const baseServer =
+	"https://testnet-algorand.api.purestake.io/idx2/v2/accounts/" + baseAccKey;
 
+// const port = "";
 // const token = {
-// 	Accept: "application/json",
-// 	"x-api-key": apiKey,
+// 	"X-API-key": apiKey,
 // };
+
+(async () => {
+	const response = await fetch(baseServer, {
+		headers: {
+			"X-API-key": apiKey,
+		},
+	});
+
+	var data = await response.json();
+
+	console.log(data);
+})().catch((e) => {
+	console.log(e);
+});
 
 // let indexerClient = new algosdk.Indexer(token, baseServer, port);
 
 // (async () => {
-// 	let assetInfo = await indexerClient.accountInformation().do();
+// 	let accountInfo = await indexerClient
+// 		.lookupAccountByID(
+// 			"QPCRMJQZXIYGODN5X5QF34PYO6VFEJ7BVZNV6LPYCSSWMB7W42GJUQKRCA"
+// 		)
+// 		.do();
+// 	// console.log(accountInfo);
+// })().catch((e) => {
+// 	console.log(e);
+// });
+
+// (async () => {
+// 	let assetInfo = await indexerClient.lookupAccountByID().do();
 // 	console.log(assetInfo);
 // })().catch((e) => {
 // 	console.log(e);
 // });
 
-const algosdk = require("algosdk");
+// const server = "https://testnet-algorand.api.purestake.io/ps2";
+// const port = "";
+// const token = {
+// 	"x-api-key": apiKey,
+// };
 
-const server = "https://testnet-algorand.api.purestake.io/ps2";
-const port = "";
-const token = {
-	"x-api-key": apiKey,
-};
+// let client = new algosdk.Algodv2(token, server, port);
 
-let client = new algosdk.Algodv2(token, server, port);
-
-(async () => {
-	let alice_account_info = await client.accountInformation(baseAccKey).do();
-	console.log("Asset of Alice: ");
-	console.log(alice_account_info.assets);
-})().catch((e) => {
-	console.log(e);
-});
+// (async () => {
+// 	let alice_account_info = await client.accountInformation(baseAccKey).do();
+// 	console.log("Asset of Alice: ");
+// 	console.log(alice_account_info.assets);
+// })().catch((e) => {
+// 	console.log(e);
+// });
