@@ -3,6 +3,8 @@
 
 require("dotenv").config();
 
+const util = require("util");
+
 const algosdk = require("algosdk");
 const baseServer = "https://testnet-algorand.api.purestake.io/ps2";
 const port = "";
@@ -39,8 +41,14 @@ let algodClient = new algosdk.Algodv2(token, baseServer, port);
 
 	let signedTxn = algosdk.signTransaction(txn, recoveredAccount.sk);
 	let sendTx = await algodClient.sendRawTransaction(signedTxn.blob).do();
-
-	console.log("Transaction : " + sendTx.txId);
+	const completedTx = await utils.waitForConfirmation(
+		client,
+		txnId,
+		roundTimeout
+	);
+	console.log(
+		util.inspect(sendTx, { showHidden: false, depth: null, colors: true })
+	);
 })().catch((e) => {
 	console.log(e);
 });
