@@ -1,6 +1,3 @@
-// Algorand Algod (v2) example
-// Send transaction on TestNet
-
 require("dotenv").config();
 
 const util = require("util");
@@ -41,11 +38,6 @@ let algodClient = new algosdk.Algodv2(token, baseServer, port);
 
 	let signedTxn = algosdk.signTransaction(txn, recoveredAccount.sk);
 	let sendTx = await algodClient.sendRawTransaction(signedTxn.blob).do();
-	const completedTx = await utils.waitForConfirmation(
-		client,
-		txnId,
-		roundTimeout
-	);
 	console.log(
 		util.inspect(sendTx, { showHidden: false, depth: null, colors: true })
 	);

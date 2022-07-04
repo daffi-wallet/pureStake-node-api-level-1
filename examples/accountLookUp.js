@@ -1,5 +1,5 @@
 require("dotenv").config();
-// const algosdk = require("algosdk");
+const algosdk = require("algosdk");
 const fetch = require("node-fetch");
 
 const apiKey = process.env.PURESTAKE_API_KEY;
@@ -20,8 +20,8 @@ let indexerClient = new algosdk.Indexer(token, baseServer, port);
 ////////////////////////////////////////////
 
 (async () => {
-	let assetInfo = await indexerClient.lookupAccountByID().do();
-	console.log(assetInfo);
+	let accountInfo = await indexerClient.lookupAccountByID(baseAccKey).do();
+	// console.log(accountInfo);
 })().catch((e) => {
 	console.log(e);
 });
@@ -47,24 +47,6 @@ let indexerClient = new algosdk.Indexer(token, baseServer, port);
 //////////////////////////////////////////////
 //	using algo to fetch account details...
 //////////////////////////////////////////////
-
-// (async () => {
-// 	let accountInfo = await indexerClient
-// 		.lookupAccountByID(
-// 			"QPCRMJQZXIYGODN5X5QF34PYO6VFEJ7BVZNV6LPYCSSWMB7W42GJUQKRCA"
-// 		)
-// 		.do();
-// 	// console.log(accountInfo);
-// })().catch((e) => {
-// 	console.log(e);
-// });
-
-// (async () => {
-// 	let assetInfo = await indexerClient.lookupAccountByID().do();
-// 	console.log(assetInfo);
-// })().catch((e) => {
-// 	console.log(e);
-// });
 
 // const server = "https://testnet-algorand.api.purestake.io/ps2";
 // const port = "";
