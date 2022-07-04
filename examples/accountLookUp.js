@@ -13,11 +13,11 @@ const token = {
 	"X-API-key": apiKey,
 };
 
-let indexerClient = new algosdk.Indexer(token, baseServer, port);
-
 ////////////////////////////////////////////
 //	using indexer to fetch account details
 ////////////////////////////////////////////
+
+let indexerClient = new algosdk.Indexer(token, baseServer, port);
 
 (async () => {
 	let accountInfo = await indexerClient.lookupAccountByID(baseAccKey).do();
