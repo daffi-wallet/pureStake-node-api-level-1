@@ -1,14 +1,14 @@
-require("dotenv").config();
+require("dotenv").config(); //get secret keys from env files
 
-const util = require("util");
+const util = require("util"); // use to console log [object object]
 
 const algosdk = require("algosdk");
 const baseServer = "https://testnet-algorand.api.purestake.io/ps2";
 const port = "";
 
-const apiKey = process.env.PURESTAKE_API_KEY;
-const senderMnemonic = process.env.BASE_ACC_MNEMONIC;
-const receiverAccount = process.env.RECEIVER_ACCOUNT;
+const apiKey = process.env.PURESTAKE_API_KEY; // API key given in purestake account
+const senderMnemonic = process.env.BASE_ACC_MNEMONIC; // mnemonic of the sender account to make sure account is active
+const receiverAccount = process.env.RECEIVER_ACCOUNT; // algo receiving account number
 
 const token = {
 	"X-API-key": apiKey,
@@ -44,7 +44,7 @@ let algodClient = new algosdk.Algodv2(token, baseServer, port);
 	);
 
 	// Wait for confirmation
-	let confirmedTxn = await waitForConfirmation(
+	let confirmedTxn = await versionsCheck(
 		algodClient,
 		sendTx.txId,
 		txn.lastRound

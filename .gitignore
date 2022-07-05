@@ -1,1 +1,2 @@
+# ignore .env files so that project credentials or keys cannot be public
 .env
