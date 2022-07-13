@@ -1,16 +1,15 @@
-var AWS = require("aws-sdk");
+var AWS = require("aws-sdk"); // aws sdk to handle dynamoDB
+const awsConfig = require("../database/config.js"); // import db configuration for AWS connection
 
-const awsConfig = require("../database/config.js");
-
-AWS.config.update(awsConfig.aws_remote_config);
-
-let docClient = new AWS.dynamoDB.DocumentClient();
+AWS.config.update(awsConfig.awsRemoteConfig); // update AWS configuration remotely
+let docClient = new AWS.DynamoDB.DocumentClient(); // setup new dynamo client // setup new dynamo client
 
 let fetchOneByKey = function () {
 	var params = {
-		TableName: "daffi_wallet_algo_assets",
+		// initialize parameter for database table authentication (table name)
+		TableName: awsConfig.awsTableName,
 		Key: {
-			asset_name: "email1",
+			asset_id: "2",
 		},
 	};
 	docClient.get(params, function (err, data) {

@@ -4,7 +4,7 @@ const awsConfig = require("../database/config.js");
 
 AWS.config.update(awsConfig.awsRemoteConfig);
 
-let docClient = new AWS.dynamoDB.DocumentClient();
+let docClient = new AWS.DynamoDB.DocumentClient(); // setup new dynamo client
 
 let fetchOneByKey = async function () {
 	var params = {

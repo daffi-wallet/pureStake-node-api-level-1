@@ -2,9 +2,9 @@ var AWS = require("aws-sdk");
 
 const awsConfig = require("../database/config.js");
 
-AWS.config.update(awsConfig.aws_remote_config);
+AWS.config.update(awsConfig.awsRemoteConfig);
 
-let docClient = new AWS.dynamoDB.DocumentClient();
+let docClient = new AWS.DynamoDB.DocumentClient(); // setup new dynamo client
 
 let modify = function () {
 	var params = {

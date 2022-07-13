@@ -8,7 +8,7 @@ const apiKey = process.env.PURESTAKE_API_KEY; // API key given in purestake acco
 const baseAccKey = process.env.BASE_ACC_KEY; // API key of sender account
 
 const baseServer =
-	"https://testnet-algorand.api.purestake.io/idx2/v2/accounts/" + baseAccKey;
+	"https://mainnet-algorand.api.purestake.io/ps2/v2/assets/163650"; // #283820866, #163650
 
 AWS.config.update(awsConfig.awsRemoteConfig); // update AWS configuration remotely
 let docClient = new AWS.DynamoDB.DocumentClient(); // setup new dynamo client // setup new dynamo client
@@ -23,26 +23,26 @@ let docClient = new AWS.DynamoDB.DocumentClient(); // setup new dynamo client //
 
 	var data = await response.json();
 
-	// update parameters Item with new fetched data from API
-	var params = {
-		TableName: awsConfig.awsTableName,
-		Item: { asset_id: 2, asset_name: "email1", ...data },
-	};
+	// // update parameters Item with new fetched data from API
+	// var params = {
+	// 	TableName: awsConfig.awsTableName,
+	// 	Item: { asset_id: 2, asset_name: "email1", ...data },
+	// };
 
-	// store all data in dynamoDB
-	docClient.put(params, function (err, data) {
-		if (err) {
-			console.log(
-				awsConfig.awsTableName +
-					"::save::error - " +
-					JSON.stringify(err, null, 2)
-			);
-		} else {
-			console.log(awsConfig.awsTableName + "::save::success");
-		}
-	});
+	// // store all data in dynamoDB
+	// docClient.put(params, function (err, data) {
+	// 	if (err) {
+	// 		console.log(
+	// 			awsConfig.awsTableName +
+	// 				"::save::error - " +
+	// 				JSON.stringify(err, null, 2)
+	// 		);
+	// 	} else {
+	// 		console.log(awsConfig.awsTableName + "::save::success");
+	// 	}
+	// });
 
-	console.log(params);
+	console.log(data);
 })().catch((e) => {
 	console.log(e);
 });
